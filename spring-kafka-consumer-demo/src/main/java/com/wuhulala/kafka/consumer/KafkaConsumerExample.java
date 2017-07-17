@@ -1,11 +1,7 @@
 package com.wuhulala.kafka.consumer;
 
-import com.alibaba.fastjson.JSON;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.annotation.EnableKafka;
+
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.listener.MessageListener;
 import org.springframework.stereotype.Component;
 
 /**
