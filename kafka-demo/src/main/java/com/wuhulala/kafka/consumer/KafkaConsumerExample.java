@@ -1,10 +1,9 @@
-package com.hundsun.kafka.consumer;
+package com.wuhulala.kafka.consumer;
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 
-import com.hundsun.kafka.producer.KafkaProducerExample;
+import com.wuhulala.kafka.producer.KafkaProducerExample;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -15,7 +14,7 @@ public class KafkaConsumerExample {
     public static void main(String[] args) throws InterruptedException {
         Properties props = new Properties();
         props.put("bootstrap.servers", "127.0.0.1:9092");
-        props.put("group.id", "test2");
+        props.put("group.id", "test");
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
         props.put("session.timeout.ms", "30000");

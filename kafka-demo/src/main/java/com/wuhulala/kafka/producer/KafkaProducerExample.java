@@ -1,4 +1,4 @@
-package com.hundsun.kafka.producer;
+package com.wuhulala.kafka.producer;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
@@ -20,7 +20,7 @@ public class KafkaProducerExample {
         props.put("buffer.memory", 33554432);
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        props.put("partitioner.class", "com.hundsun.kafka.partitioner.MoldPartitioner");
+        props.put("partitioner.class", "com.wuhulala.kafka.partitioner.MoldPartitioner");
         Producer<String, String> producer = new KafkaProducer<>(props);
         String[] strings = new String[1000000];
         long start = System.currentTimeMillis();
