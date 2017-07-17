@@ -15,8 +15,7 @@ import org.springframework.stereotype.Component;
  * 开发人员: xueah20964<br>
  * 开发时间: 2017/7/17<br>
  */
-@Configuration
-@EnableKafka
+@Component
 public class KafkaConsumerExample  {
 
     @KafkaListener(topics = "demo", containerFactory = "containerFactory")

@@ -27,7 +27,8 @@
 
     <!-- kafka 监听器容器工厂 -->
     <bean id="containerFactory" class="org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory">
-        <property name="concurrency" value="3"/>
+        <!-- 并发配置 线程个数 -->
+        <property name="concurrency" value="4"/>
         <property name="consumerFactory" ref="consumerFactory"/>
     </bean>
 

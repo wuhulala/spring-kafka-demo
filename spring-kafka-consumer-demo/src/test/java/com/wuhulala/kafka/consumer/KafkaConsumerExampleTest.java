@@ -1,9 +1,13 @@
 package com.wuhulala.kafka.consumer;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -30,9 +34,11 @@ public class KafkaConsumerExampleTest {
 
     @Test
     public void t(){
-        int a = 1;
-        int b = 1;
-        System.out.println(a + b);
+        Map<Long, Map>map = new HashMap<>();
+        Map innerMap = new HashMap();
+        innerMap.put(Long.parseLong("1") , 1);
+        map.put(1L,innerMap);
+        System.out.println(map.get(new Long(1)).get(1L));
     }
 
 }
