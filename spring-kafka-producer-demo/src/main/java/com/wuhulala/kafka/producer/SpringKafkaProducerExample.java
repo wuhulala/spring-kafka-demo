@@ -46,7 +46,4 @@ public class SpringKafkaProducerExample {
         System.out.println("send use time ： [" + (end - start) + "]");
     }
 
-
-
-
 }
