@@ -11,19 +11,19 @@ import org.springframework.stereotype.Component;
  * 开发人员: wuhulala<br>
  * 开发时间: 2017/7/17<br>
  */
-@Component
-public class KafkaConsumerExample  {
+//@Component
+public class KafkaSlowConsumerExample {
+
     private static int count = 0;
 
-    @KafkaListener(topics = "demo1", containerFactory = "containerFactory")
+    //@KafkaListener(topics = "demo1", containerFactory = "containerFactory")
     public void onMessage(String data) {
         //模拟业务操作
         try {
-            Thread.sleep(20);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("fast 消费:[" + data + " ] 当前消费了:[" + ++count + "]条信息");
-
+        System.out.println("slow 消费:[" + data + " ] 当前消费了:[" + ++count + "]条信息");
     }
 }
