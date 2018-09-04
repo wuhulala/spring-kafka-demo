@@ -5,11 +5,16 @@
        xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <context:property-placeholder location="config.properties"/>
-
+    <bean id="propertyHolder" class="com.wuhulala.kafka.consumer.PropertyHolder">
+        <property name="locations">
+            <list>
+                <value>classpath:config.properties</value>
+            </list>
+        </property>
+    </bean>
     <context:component-scan base-package="com.wuhulala.kafka.consumer"/>
 
-    <util:map id="kafka-consumer-config">
+    <!--<util:map id="kafka-consumer-config">
         <description>kafka消费者配置</description>
         <entry key="bootstrap.servers" value="${bootstrap.servers}" />
         <entry key="group.id" value="${group.id}"/>
@@ -18,19 +23,26 @@
         <entry key="session.timeout.ms" value="${session.timeout.ms}"/>
         <entry key="key.deserializer" value="${key.deserializer}"/>
         <entry key="value.deserializer" value="${value.deserializer}"/>
+        <entry key="max.poll.records" value="${max.poll.records}"/>
+        <entry key="fetch.max.wait.ms" value="${fetch.max.wait.ms}"/>
+
     </util:map>
 
-    <!-- kafka消费者连接工厂 -->
+    &lt;!&ndash; kafka消费者连接工厂 &ndash;&gt;
     <bean id="consumerFactory" class="org.springframework.kafka.core.DefaultKafkaConsumerFactory">
         <constructor-arg name="configs" ref="kafka-consumer-config"/>
     </bean>
 
-    <!-- kafka 监听器容器工厂 -->
-    <bean id="containerFactory" class="org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory">
-        <!-- 并发配置 线程个数 -->
-        <property name="concurrency" value="4"/>
-        <property name="consumerFactory" ref="consumerFactory"/>
+    <bean id="kafka-listener-container-config" class="org.springframework.kafka.listener.config.ContainerProperties">
+        <property name="pollTimeout" value="5000"/>
     </bean>
+
+    &lt;!&ndash; kafka 监听器容器工厂 &ndash;&gt;
+    <bean id="containerFactory" class="org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory">
+        &lt;!&ndash; 并发配置 线程个数 &ndash;&gt;
+        <property name="concurrency" value="1"/>
+        <property name="" value=""></property>
+    </bean>-->
 
 
 </beans>
