@@ -1,19 +1,19 @@
 package com.wuhulala.kafka.producer;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerRecord;
+import com.wuhulala.kafka.constants.KafkaConstants;
+import org.apache.kafka.clients.producer.*;
 
 import java.util.Properties;
 
+import static com.wuhulala.kafka.constants.KafkaConstants.DEMO_TOPIC;
+
 
 public class KafkaProducerExample {
-    public final static String TOPIC = "demo";
 
     public static void main(String[] args) {
         Properties props = new Properties();
         // kafka服务器地址
-        props.put("bootstrap.servers", "127.0.0.1:9092");
+        props.put("bootstrap.servers", KafkaConstants.KAFKA_BROKER_LIST);
         // 需要收到多少个服务器的确认信号，all会保证集群leader和所有备份都返回确认信号
         props.put("acks", "all");
         // 失败重试次数
@@ -40,8 +40,16 @@ public class KafkaProducerExample {
         long end = System.currentTimeMillis();
         System.out.println("prepare use time ： [" + (end - start) + "]");
 
-        for (int i = 0; i < 1000000; i++) {
-            producer.send(new ProducerRecord<>(TOPIC, strings[i], strings[i]));
+        for (int i = 0; i < 10; i++) {
+            producer.send(new ProducerRecord<>(DEMO_TOPIC, strings[i], strings[i]), new Callback() {
+                @Override
+                public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+                    System.out.println(recordMetadata);
+                    if(e != null) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
         end = System.currentTimeMillis();
         System.out.println("send use time ： [" + (end - start) + "]");
