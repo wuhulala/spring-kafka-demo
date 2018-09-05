@@ -10,7 +10,7 @@ import static com.wuhulala.kafka.constants.KafkaConstants.DEMO_TOPIC;
 
 public class KafkaProducerExample {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Properties props = new Properties();
         // kafka服务器地址
         props.put("bootstrap.servers", KafkaConstants.KAFKA_BROKER_LIST);
@@ -50,6 +50,7 @@ public class KafkaProducerExample {
                     }
                 }
             });
+            Thread.sleep(1000);
         }
         end = System.currentTimeMillis();
         System.out.println("send use time ： [" + (end - start) + "]");
